@@ -4,7 +4,14 @@
 <head>
     <title>Coming Soon</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+
         body {
             margin: 0;
             min-height: 100vh;
@@ -14,32 +21,34 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background: #F9F6F0;
+            padding: 20px;
         }
 
 
         .container {
+            width: 100%;
             max-width: 450px;
             padding: 20px;
         }
 
 
         img {
-            width: 250px;
-            height: 250px;
+            width: min(250px, 70vw);
+            height: min(250px, 70vw);
             border-radius: 25px;
             object-fit: cover;
         }
 
 
         h1 {
-            font-size: 42px;
-            margin-top: 25px;
+            font-size: clamp(30px, 8vw, 42px);
+            margin: 25px 0 10px;
             color: #222;
         }
 
 
         p {
-            font-size: 18px;
+            font-size: clamp(15px, 4vw, 18px);
             color: #666;
             line-height: 1.5;
         }
@@ -47,7 +56,7 @@
 
         .launch-text {
             margin-top: 25px;
-            font-size: 20px;
+            font-size: clamp(17px, 4vw, 20px);
             color: #333;
             font-weight: bold;
         }
@@ -57,7 +66,7 @@
 
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin: 25px 0;
             flex-wrap: wrap;
 
@@ -68,9 +77,9 @@
 
             background: #222;
             color: white;
-            padding: 15px;
+            padding: 12px;
             border-radius: 12px;
-            min-width: 65px;
+            width: 75px;
 
         }
 
@@ -92,7 +101,6 @@
         }
 
 
-
         .social {
 
             margin-top: 35px;
@@ -112,7 +120,7 @@
             color: white;
             text-decoration: none;
             font-size: 22px;
-            transition: 0.3s;
+            transition: .3s;
 
         }
 
@@ -125,32 +133,23 @@
 
 
         .twitter {
-
             background: #000;
-
         }
 
 
         .facebook {
-
             background: #1877F2;
-
         }
 
 
         .instagram {
-
             background: #E4405F;
-
         }
 
 
         .youtube {
-
             background: #FF0000;
-
         }
-
 
 
         .contact {
@@ -158,6 +157,7 @@
             margin-top: 30px;
             font-size: 16px;
             color: #555;
+            word-break: break-word;
 
         }
 
@@ -179,19 +179,57 @@
 
 
 
-        @media(max-width:500px) {
+        @media(max-width:480px) {
 
-            img {
 
-                width: 200px;
-                height: 200px;
+            .container {
+
+                padding: 10px;
 
             }
 
 
-            h1 {
+            .time-box {
 
-                font-size: 34px;
+                width: 65px;
+                padding: 10px;
+
+            }
+
+
+            .time-box span {
+
+                font-size: 22px;
+
+            }
+
+
+            .social a {
+
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+
+            }
+
+        }
+
+
+
+        @media(max-width:320px) {
+
+
+            .timer {
+
+                flex-direction: column;
+                align-items: center;
+
+            }
+
+
+            .time-box {
+
+                width: 100px;
 
             }
 
@@ -219,7 +257,6 @@
             We are building something amazing.<br>
             Stay tuned!
         </p>
-
 
 
         <div class="launch-text">
@@ -268,17 +305,14 @@
             </a>
 
 
-
             <a class="facebook" href="https://facebook.com/yourpage" target="_blank">
                 f
             </a>
 
 
-
             <a class="instagram" href="https://instagram.com/yourpage" target="_blank">
                 ◎
             </a>
-
 
 
             <a class="youtube" href="https://youtube.com/@yourpage" target="_blank">
@@ -313,9 +347,8 @@
     <script>
 
 
-        // Change your app launch date here
-
-        const launchDate = new Date("November 10, 2026 00:00:00").getTime();
+        // Set launch date here
+        const launchDate = new Date("2026-11-10T00:00:00").getTime();
 
 
 
@@ -324,8 +357,20 @@
 
             const now = new Date().getTime();
 
-
             const distance = launchDate - now;
+
+
+
+            if (distance < 0) {
+
+                clearInterval(timer);
+
+                document.querySelector(".timer").innerHTML =
+                    "🚀 App is Live!";
+
+                return;
+
+            }
 
 
 
@@ -334,19 +379,16 @@
             );
 
 
-
             const hours = Math.floor(
                 (distance % (1000 * 60 * 60 * 24)) /
                 (1000 * 60 * 60)
             );
 
 
-
             const minutes = Math.floor(
                 (distance % (1000 * 60 * 60)) /
                 (1000 * 60)
             );
-
 
 
             const seconds = Math.floor(
@@ -356,22 +398,22 @@
 
 
 
-            document.getElementById("days").innerHTML = days;
-
-            document.getElementById("hours").innerHTML = hours;
-
-            document.getElementById("minutes").innerHTML = minutes;
-
-            document.getElementById("seconds").innerHTML = seconds;
+            document.getElementById("days").innerHTML =
+                String(days).padStart(2, "0");
 
 
+            document.getElementById("hours").innerHTML =
+                String(hours).padStart(2, "0");
 
 
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".timer").innerHTML =
-                    "🚀 App is Live!";
-            }
+            document.getElementById("minutes").innerHTML =
+                String(minutes).padStart(2, "0");
+
+
+            document.getElementById("seconds").innerHTML =
+                String(seconds).padStart(2, "0");
+
+
 
         }, 1000);
 
