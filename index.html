@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Coming Soon</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: #F9F6F0;
+        }
+
+
+        .container {
+            max-width: 450px;
+            padding: 20px;
+        }
+
+
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 25px;
+            object-fit: cover;
+        }
+
+
+        h1 {
+            font-size: 42px;
+            margin-top: 25px;
+            color: #222;
+        }
+
+
+        p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        .launch-text {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+
+        .timer {
+
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+
+        }
+
+
+        .time-box {
+
+            background: #222;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 65px;
+
+        }
+
+
+        .time-box span {
+
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+
+        }
+
+
+        .time-box small {
+
+            font-size: 12px;
+            color: #ddd;
+
+        }
+
+
+
+        .social {
+
+            margin-top: 35px;
+
+        }
+
+
+        .social a {
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            margin: 5px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            transition: 0.3s;
+
+        }
+
+
+        .social a:hover {
+
+            transform: scale(1.1);
+
+        }
+
+
+        .twitter {
+
+            background: #000;
+
+        }
+
+
+        .facebook {
+
+            background: #1877F2;
+
+        }
+
+
+        .instagram {
+
+            background: #E4405F;
+
+        }
+
+
+        .youtube {
+
+            background: #FF0000;
+
+        }
+
+
+
+        .contact {
+
+            margin-top: 30px;
+            font-size: 16px;
+            color: #555;
+
+        }
+
+
+        .contact a {
+
+            color: #222;
+            font-weight: bold;
+            text-decoration: none;
+
+        }
+
+
+        .contact a:hover {
+
+            color: #007bff;
+
+        }
+
+
+
+        @media(max-width:500px) {
+
+            img {
+
+                width: 200px;
+                height: 200px;
+
+            }
+
+
+            h1 {
+
+                font-size: 34px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <img src="logo.png" alt="App Icon">
+
+
+        <h1>
+            Coming Soon 🚀
+        </h1>
+
+
+        <p>
+            We are building something amazing.<br>
+            Stay tuned!
+        </p>
+
+
+
+        <div class="launch-text">
+            Our app launches in:
+        </div>
+
+
+
+        <div class="timer">
+
+
+            <div class="time-box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+
+
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+
+
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small>Minutes</small>
+            </div>
+
+
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small>Seconds</small>
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="social">
+
+
+            <a class="twitter" href="https://twitter.com/yourpage" target="_blank">
+                𝕏
+            </a>
+
+
+
+            <a class="facebook" href="https://facebook.com/yourpage" target="_blank">
+                f
+            </a>
+
+
+
+            <a class="instagram" href="https://instagram.com/yourpage" target="_blank">
+                ◎
+            </a>
+
+
+
+            <a class="youtube" href="https://youtube.com/@yourpage" target="_blank">
+                ▶
+            </a>
+
+
+        </div>
+
+
+
+
+        <div class="contact">
+
+            For more details, please contact:
+            <br>
+
+            <a href="mailto:Sahilpasha912@gmail.com">
+                Sahilpasha912@gmail.com
+            </a>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <script>
+
+
+        // Change your app launch date here
+
+        const launchDate = new Date("November 10, 2026 00:00:00").getTime();
+
+
+
+        const timer = setInterval(function () {
+
+
+            const now = new Date().getTime();
+
+
+            const distance = launchDate - now;
+
+
+
+            const days = Math.floor(
+                distance / (1000 * 60 * 60 * 24)
+            );
+
+
+
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) /
+                (1000 * 60 * 60)
+            );
+
+
+
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+
+
+            const seconds = Math.floor(
+                (distance % (1000 * 60)) /
+                1000
+            );
+
+
+
+            document.getElementById("days").innerHTML = days;
+
+            document.getElementById("hours").innerHTML = hours;
+
+            document.getElementById("minutes").innerHTML = minutes;
+
+            document.getElementById("seconds").innerHTML = seconds;
+
+
+
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".timer").innerHTML =
+                    "🚀 App is Live!";
+            }
+
+        }, 1000);
+
+
+
+    </script>
+
+
+</body>
+
+</html>
